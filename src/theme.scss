@@ -1,0 +1,56 @@
+/**
+* Generated theme by Material Theme Generator
+* https://materialtheme.arcsine.dev
+*/
+
+@import "~@angular/material/theming";
+@include mat-core();
+
+// Custom themable components
+@import "app/app.component";
+@mixin custom-components-theme($theme) {
+  @include app-theme($theme);
+}
+
+$yellow: mat-palette($mat-yellow);
+$green: mat-palette($mat-green);
+$red: mat-palette($mat-red);
+$blue: mat-palette($mat-blue);
+$grey: mat-palette($mat-grey);
+$orange: mat-palette($mat-orange);
+
+// Light theme
+$light-primary: mat-palette($mat-light-blue);
+$light-accent: mat-palette($mat-grey, A200, A100, A400);
+$light-warn: mat-palette($mat-deep-orange);
+$background-color: #f0f1f5;
+$light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
+
+// Insert custom background color
+$background: map-get($light-theme, background);
+$background: map_merge(
+  $background,
+  (
+    background: $background-color,
+  )
+);
+$light-theme: map_merge(
+  $light-theme,
+  (
+    background: $background,
+  )
+);
+
+@include angular-material-theme($light-theme);
+@include custom-components-theme($light-theme);
+
+// Dark theme
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent: mat-palette($mat-orange, A200, A100, A400);
+$dark-warn: mat-palette($mat-deep-orange);
+$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+.dark-theme {
+  @include angular-material-theme($dark-theme);
+  @include custom-components-theme($dark-theme);
+}
